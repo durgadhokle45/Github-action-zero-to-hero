@@ -1,14 +1,13 @@
-name: hello
-
+name: Hello
 on:
   push:
-   branches: [main]
+    branches:
+      - main
 jobs:
- greet:
-   runs-on: fidora-latest
-   steps:
-   - name: say hello to users
-     run: echo"hello dosto"
-   - name: say hello to username
-     run: echo"hello"
- 
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: say hello to user
+        run: echo "hello dosto"
+      - name: say hello to user
+        run: echo "hello $USER"
