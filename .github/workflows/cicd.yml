@@ -18,12 +18,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
            - name: test container 
-            run: echo "testing container"
-     deploy:
+             run: echo "testing container"
+    deploy:
            runs-on: ubuntu-latest
-          steps:
+           steps:
            - name: Deploying the app
-             run: echo " Docker compose deploy the app"
+             run: echo "Docker compose deploy the app"
          
     
 
