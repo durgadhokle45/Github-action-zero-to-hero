@@ -1,0 +1,34 @@
+name: Simple Node.js CI/CD Pipeline # Name of the workflow
+
+on: # Triggers the workflow on specific events
+  push:
+    branches: [ main ] # Runs when a push is made to the 'main' branch
+
+jobs: # Groups of jobs that run in the pipeline
+  build-and-test: # Name of the job
+    runs-on: ubuntu-latest # The agent/runner to use (e.g., Ubuntu Linux VM)
+
+    steps: # List of tasks or commands to run in the job
+    - uses: actions/checkout@v2 # Action to check out the repository code
+      with:
+        fetch-depth: 0 # ensures all history is available for subsequent steps
+
+    - name: Use Node.js # A descriptive name for the step
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18.x' # Specifies the Node.js version to use
+
+    - name: Install dependencies
+      run: npm install # Executes shell commands
+
+    - name: Build application
+      run: npm run build # Runs the build command defined in package.json
+
+    - name: Run tests
+      run: npm test # Runs the test command
+
+    - name: Publish artifact
+      uses: actions/upload-artifact@v2 # Publishes the build artifact
+      with:
+        name: node-app-artifact
+        path: dist # The path to the built application files
