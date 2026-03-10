@@ -1,46 +1,29 @@
 name: portfolio
 
 on:
-    push:
-        branches: [main]
+  push:
+    branches: [main]
+
 permissions:
-    pages: write
-    id-token: write
+  contents: read # Allow checkout action to read repository contents
+  pages: write # Allow the deploy action to write to the GitHub Pages branch
+  id-token: write # Required by the actions/deploy-pages action for OpenID Connect
 
 jobs:
-    deploy:
-         runs-on: ubuntu-latest   
-         environment:
-             name: github-pages
-             url: $ {{ steps.deployment.outputs.page_url }}         
-         steps:
-                   - name: Checkout Code
-                     uses: actions/checkout@v4
-                   - name: Setup the Gihub pages
-                     uses: actions/configure-pages@v4
-                    
-                   - name: upload static website
-                     uses: actions/upload-pages-artifact@v4
-
-                   - name: Deploy to github pages
-                     uses:  actions/deploy-pages@v4
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
- 
-
- 
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} # Correct variable syntax
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Setup the Gihub pages
+        uses: actions/configure-pages@v4
+      - name: Upload static website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./ # Specify the path to your static site files, typically the root directory, or a build folder like ./dist or ./public
+      - name: Deploy to github pages
+        id: deployment
+        uses: actions/deploy-pages@v4
