@@ -1,0 +1,21 @@
+name: About Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  about-Gatha:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: About Gatha
+        run: |
+          echo "Name: Gatha"
+          echo "Profession: Student"
+          echo "Hobbies: Reading 📚, Coding 💻, Playing Chess ♟️"
+          echo "Goal: To become a Teacher🚀"
