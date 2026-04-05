@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  about-Gatha:
+  about-gatha:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,5 +17,5 @@ jobs:
         run: |
           echo "Name: Gatha"
           echo "Profession: Student"
-          echo "Hobbies: Reading 📚, Coding 💻, Playing Chess ♟️"
-          echo "Goal: To become a Teacher🚀"
+          echo "Hobbies: Reading, Coding, Playing Chess"
+          echo "Goal: To become a Teacher"
